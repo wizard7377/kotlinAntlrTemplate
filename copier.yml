@@ -1,3 +1,4 @@
+_subdirectory: template
 project_name:
   type: str
   help: Name given to the project as a whole
@@ -17,6 +18,6 @@ main_file:
   validator: "{% if main_file[-3:] == '.kt' %}Do not include .kt suffix{% endif %}"
 antlr_version:
   type: str
-  help: antlr version you will use
+  help: Antlr version you will use
   default: "4.13.1"
   validator: "{% if antlr_version[0] != '4' %}Must use Anltr4{% endif %}"
