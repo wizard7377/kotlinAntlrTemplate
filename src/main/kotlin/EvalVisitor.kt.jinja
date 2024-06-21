@@ -1,0 +1,24 @@
+package {{project_namespace}}
+
+import org.antlr.v4.runtime.*
+
+class EvalVisitor() : ExprBaseVisitor<Int>() {
+    override fun visitAdd(ctx : ExprParser.AddContext) : Int {
+        return visit(ctx.expr(0)) + visit(ctx.expr(1));
+    }
+    override fun visitSub(ctx : ExprParser.SubContext) : Int {
+        return visit(ctx.expr(0)) - visit(ctx.expr(1));
+    }
+    override fun visitDiv(ctx : ExprParser.DivContext) : Int {
+        return ((visit(ctx.expr(0)) - visit(ctx.expr(1))) as Int);
+    }
+    override fun visitMul(ctx : ExprParser.MulContext) : Int {
+        return visit(ctx.expr(0)) * visit(ctx.expr(1));
+    }
+    override fun visitPar(ctx : ExprParser.ParContext) : Int {
+        return (visit(ctx.expr()))
+    }
+    override fun visitNum(ctx : ExprParser.NumContext) : Int {
+        return ctx.INT().getText().toInt();
+    }
+}

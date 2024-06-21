@@ -1,0 +1,13 @@
+package {{project_namespace}}
+
+import org.antlr.v4.runtime.*
+
+fun main(params : Array<String>) {
+    val input = CharStreams.fromString(params[0])
+    val lexer = ExprLexer(input)
+    val tokens = CommonTokenStream(lexer)
+    val parser = ExprParser(tokens)
+    val tree = parser.expr()   
+    val eval = EvalVisitor()
+    println(eval.visit(tree))
+}

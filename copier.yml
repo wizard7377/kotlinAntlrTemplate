@@ -1,0 +1,22 @@
+project_name:
+  type: str
+  help: Name given to the project as a whole
+  placeholder: Example
+your_name:
+  type: str
+  help: Your name used in package name
+  placeholder: John Doe
+project_namespace:
+  type: str
+  help: Namespace of the project
+  default: "io.{{ your_name|trim|title|replace(' ','')|replace(your_name|first,your_name|first|lower,1) }}.{{ project_name|trim|title|replace(' ','')|replace(project_name|first,project_name|first|lower,1) }}"
+main_file:
+  type: str
+  help: Main file name (only prefix, no .kt suffix)
+  default: Main
+  validator: "{% if main_file[-3:] == '.kt' %}Do not include .kt suffix{% endif %}"
+antlr_version:
+  type: str
+  help: antlr version you will use
+  default: "4.13.1"
+  validator: "{% if antlr_version[0] != '4' %}Must use Anltr4{% endif %}"

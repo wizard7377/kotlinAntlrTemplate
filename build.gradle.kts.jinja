@@ -1,0 +1,42 @@
+val namespace = "{{project_namespace}}" //Namespace of project
+val antlrArgs = listOf("-visitor","-listener","-package", namespace) //Arguements passed to Antlr4
+val antlrVersion = "{{antlr_version}}" //The version of Antlr being used (must be a Antlr4 version)
+val kotlinSource = "src/main/kotlin"
+val kotlinMain = "{{main_file}}Kt" //Main file name
+val projectVersion = "1.0.0" //Project version
+
+
+
+group = namespace
+version = projectVersion
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    antlr("org.antlr:antlr4:{{antlr_version}}") //antlr tool dependency
+    implementation("org.antlr:antlr4-runtime:{{antlr_version}}") //anltr runtime dependency
+}
+
+plugins {
+    kotlin("jvm") version "2.0.0" // Kotlin version to use
+    antlr //Use Antlr
+    application //Use application
+}
+
+tasks.generateGrammarSource {
+    arguments = arguments + antlrArgs //set Antlr arguements
+}
+
+sourceSets.main {
+    kotlin.srcDir(kotlinSource) //set Kotlin source
+}
+
+tasks.compileKotlin {
+    dependsOn(tasks.generateGrammarSource) //make Kotlin depend on Antlr
+}
+
+application {
+    mainClass = "$namespace.$mainClass" //set main class
+}
