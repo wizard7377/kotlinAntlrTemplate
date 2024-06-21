@@ -9,12 +9,11 @@ Hence, I made a template for anyway else with similar diffuculties that is as si
 
 ### Installing prerequisites
 
-Kotlin, Gradle, and Antlr (at least Antlr version 4) must be installed. 
-The proccess to install Copier is simple.
+[**Kotlin**](https://kotlinlang.org/), [**Gradle**](https://gradle.org/), [**pipx**](https://github.com/pypa/pipx), and [**Antlr**](https://www.antlr.org/) (at least Antlr version 4) must be installed. 
+The proccess to install [**Copier**](https://github.com/copier-org/copier) is simple.
 ```
 pipx install copier
 ```
-(pipx is required)
 
 ### Using the template
 
